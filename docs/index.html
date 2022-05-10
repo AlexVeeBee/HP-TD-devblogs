@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HP-TD development</title>
     <script src="./jquery.js"></script>
+    <meta name="og:title" content="HP-TD development" />
+    <meta name="og:description" content="Harry Potter: Witchcraft and Wizardry development" />
+    <meta name="og:image" content="https://cdn.discordapp.com/icons/964475410618392586/3ad65244ef0240d85f62c2be7473780f.webp?size=4096&width=862&height=862" />
+    
 </head>
 <body>
     <div class="pageBkg">
@@ -19,7 +23,7 @@
     <header>
         <div class="inner">
             <div class="content">
-                <span>HP-TD development</span>
+                <a href="/"><span>HP-TD development</span></a>
             </div>
         </div>
         <div class="header-spacing hr-c"></div>
@@ -161,6 +165,7 @@
                             </div>
                             <div class="title">
                                 <h1>`+item.title+`</h1>
+                                <span>`+item.description+`</span>
                             </div>
                         </div>
                     </a>
@@ -227,23 +232,20 @@
         max-width: var(--page-width);
     }
     /* The rest of the blogs */
-    .main-Page .content .blog {
-        text-decoration: none !important;
-
-    }
+    .main-Page .content .blog { text-decoration: none !important; }
     .main-Page .content .blog .blog-inner {
         overflow: hidden;
         display: flex;
         align-items: center;
         margin-bottom: 12px;
-        border-radius: 6px;
         box-shadow: 0px 6px 8px 3px rgba(0, 0, 0, 0.3);
-        background-color: var(--hr-color-middle);
+        /* background-color: var(--hr-color-middle); */
         /* box-shadow: 0px 2px 4px 6px rgba(0, 0, 0, 0.3); */
         width: 100%;
     }
     .main-Page .content .blog .blog-inner
     .prev-image img {
+        border-radius: 6px;
         display: block;
         width: 250px;
         height: 300px;
@@ -253,8 +255,12 @@
         padding: 12px;
     }
     .main-Page .content .blog .blog-inner .title h1 {
-        color: black !important;
+        font-size: 38px;
     }
+    /* .main-Page .content .blog .blog-inner .title h1,
+    .main-Page .content .blog .blog-inner .title span {
+        color: black !important;
+    } */
     /* latest Blog */
     .main-Page .content .blog:first-child .blog-inner {
         align-items: stretch;
@@ -274,7 +280,8 @@
         height: 300px;
         object-fit: cover;
     }
-    .main-Page .content .blog:first-child .blog-inner .title h1 {
+    .main-Page .content .blog:first-child .blog-inner .title h1 ,
+    .main-Page .content .blog:first-child .blog-inner .title span {
         color: white !important;
     }
     /*  */
