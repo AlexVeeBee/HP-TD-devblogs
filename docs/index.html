@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HP-TD development</title>
     <script src="./jquery.js"></script>
-    <meta name="og:title" content="HP-TD development" />
+    <meta class="meta-title" name="og:title" content="HP-TD development" />
     <meta name="og:description" content="Harry Potter: Witchcraft and Wizardry development" />
     <meta name="og:image" content="https://cdn.discordapp.com/icons/964475410618392586/3ad65244ef0240d85f62c2be7473780f.webp?size=4096&width=862&height=862" />
     
@@ -157,6 +157,7 @@
         if (!getUrlParameter("viewNews")) {
             $.getJSON("./news.json", (data) => {
                 data.reverse().forEach(function(item, index) {
+                    $(".meta-title").attr("content", item.title)
                     $("body .main-Page .content").append(`
                     <a href="?viewNews=`+index+`" class="blog">
                         <div class="blog-inner">
@@ -287,6 +288,14 @@
         min-width: 500px;
         height: 5px;
         background: linear-gradient(90deg,var(--hr-color-ends),var(--hr-color-middle), var(--hr-color-ends));
+    }
+    /* devblog */
+    .main-Page .content .devblog-container {
+
+    }
+    .main-Page .content .devblog-container
+    .devblog-title {
+        text-align: center;
     }
 
     @media (max-width: 768px) {
