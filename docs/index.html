@@ -9,21 +9,28 @@
     <meta class="meta-title" name="og:title" content="HP-TD development" />
     <meta name="og:description" content="Harry Potter: Witchcraft and Wizardry development" />
     <meta name="og:image" content="https://cdn.discordapp.com/icons/964475410618392586/3ad65244ef0240d85f62c2be7473780f.webp?size=4096&width=862&height=862" />
+    <meta property="theme-color" content="#FFEDB1">
     
 </head>
 <body>
     <div class="pageBkg">
         <canvas style="height: 100%" id="pageBkg"></canvas>
     </div>
-    <!-- <div class="pageBkg">
+    <div class="pageBkg pageBkg-img" style="display: none;" >
         <div class="blue"></div>
-        chrome_AYIZlVgPuK.png
-        <img src="./objects/2022-04-22-21-31-52.png">
-    </div> -->
+        <!-- chrome_AYIZlVgPuK.png -->
+        <img src="" class="unselectable">
+    </div>
     <header>
         <div class="inner">
             <div class="content">
-                <a href="/HP-TD-devblogs/"><span>HP-TD development</span></a>
+                <div class="left">
+                    <a href="/HP-TD-devblogs/"><span>HP-TD development</span></a>
+                </div>
+                <div class="Right">
+                    <a href="https://discord.gg/ZdX8GuJ2Eg"><button tabindex="-1" class="header-button"><span>Discord</span></button></a>
+                    <a href="https://github.com/deffcolony/HP-Witchcraft-and-Wizardry"><button tabindex="-1" class="header-button"><span>Github</span></button></a>
+                </div>
             </div>
         </div>
         <div class="header-spacing hr-c"></div>
@@ -60,9 +67,6 @@
           x: Math.random() * 1600 - 800,
           y: Math.random() * 900 - 450,
           z: Math.random() * 1000,
-          r: 300,
-          g: 0,
-          b: 0
         };
         out.push(s);
       }
@@ -115,8 +119,8 @@
       for (var i = 0; i < count; i++) {
         const star = stars[i];
 
-        const x = cx + star.x / (star.z * 0.001);
-        const y = cy + star.y / (star.z * 0.001);
+        const x = cx + star.x / (star.z * 0.005);
+        const y = cy + star.y / (star.z * 0.005);
 
         if (x < 0 || x >= w || y < 0 || y >= h) {
           continue;
@@ -155,11 +159,12 @@
         // 
         $("body .main-Page .content").empty();
         if (!getUrlParameter("viewNews")) {
+            $(".pageBkg-img").hide();
             $.getJSON("./news.json", (data) => {
+                var ViewIndex = data.length-1
                 data.reverse().forEach(function(item, index) {
-                    $(".meta-title").attr("content", item.title)
                     $("body .main-Page .content").append(`
-                    <a href="?viewNews=`+index+`" class="blog">
+                    <a href="?viewNews=`+ViewIndex+`" class="blog">
                         <div class="blog-inner">
                             <div class="prev-image">
                                 <img src="`+item.img+`">
@@ -170,13 +175,17 @@
                             </div>
                         </div>
                     </a>
-                `);
+                    `);
+                    ViewIndex--
                 })
             })
         } else {
+            $(".pageBkg-img").show();
+            $(".pageBkg-img").css("opacity", "0.4");
             var id = getUrlParameter("viewNews")
             $.getJSON("./news.json", (data) => {
                 var item = data[id]
+                $(".pageBkg-img img").attr("src", item.img);
                 $("body .main-Page .content").load("./htmlNews/"+item.htmlFile);
             })
         }
@@ -192,6 +201,15 @@
         --div-color-near-middle: rgb(255, 239, 172,.60);
         --div-color-middle: rgb(255, 239, 172,.80);
     }
+    .unselectable {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
     * {color: white; padding: 0px; margin: 0px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body {
         background-color: gray;
@@ -204,22 +222,54 @@
         object-fit: cover;
         width: 100vw;
         height: 100vh;
+        -webkit-mask: linear-gradient(90deg, transparent 0%,  rgb(0,0,0,1) 100px, rgb(0,0,0,1) calc(100% - 100px), transparent 100%);
     }
 
     header {
+        box-shadow: 0px 3px 12px 1px rgba(0,0,0,0.3);
         display: flex;
         width: 100%;
         align-items: center;
         flex-direction: column;
         /* background-color: red; */
         color: white;
+
+        background: linear-gradient(to bottom, rgb(194, 183, 111), rgba(255, 242, 154, 0)), linear-gradient(to right, rgb(194, 183, 111), rgba(255, 242, 154, 0.42), rgb(194, 183, 111) );
     }
     header .inner{ 
         width: 100vw;
         max-width: var(--page-width);
     }
+    header .inner .content .left{
+        display: flex;
+        align-items:center;
+    }
+    header .inner .content .Right{
+        display: flex;
+    }
     header .inner .content{
         padding: 12px;
+        display: flex;
+        justify-content: space-between
+    }
+    header .inner .content
+    .Right a {
+        margin-left: 12px;
+    }
+    header .inner .content
+    .header-button {
+        padding: 4px 12px;
+        border: 2px solid black;
+        background: none;
+        transition: box-shadow 0.1s, transform 0.1s;
+    }
+    header .inner .content
+    .header-button:hover {
+        transform: translate(0,-3px);
+        box-shadow: 0px 3px 12px 1px rgba(0,0,0,0.3);
+    }
+    header .inner .content *{
+        color: black;
     }
     .main-Page {
         display: flex;
@@ -285,7 +335,8 @@
     }
     /*  */
     .hr-c {
-        min-width: 500px;
+        width: 100vw;
+        max-width: 1000px;
         height: 5px;
         background: linear-gradient(90deg,var(--hr-color-ends),var(--hr-color-middle), var(--hr-color-ends));
     }
