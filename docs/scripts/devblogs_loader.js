@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    $(".page-header-loading").remove()
     // shhhh, this is copied from stackoverflow | credit: Sameer Kazi   
     var getUrlParameter = function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
@@ -17,9 +18,11 @@ $(document).ready(() => {
     };
     // 
     $("body .main-Page .content").empty();
+    $("body .main-Page .content").append(`<h1 class="contentLoading">Loading</h1>`);
     if (!getUrlParameter("viewNews")) {
         $(".pageBkg-img").hide();
         $.getJSON("./news.json", (data) => {
+            $("body .main-Page .content").empty();
             var ViewIndex = data.length-1
             data.reverse().forEach(function(item, index) {
                 $("body .main-Page .content").append(`
@@ -42,12 +45,18 @@ $(document).ready(() => {
         $(".pageBkg-img").show();
         $(".pageBkg-img").css("opacity", "0.4");
         var id = getUrlParameter("viewNews")
+        var datajson;
         $.getJSON("./news.json", (data) => {
             var item = data[id]
-            $(".pageBkg-img img").attr("src", item.img);
-            $("body .main-Page .content").load("./htmlNews/"+item.htmlFile, () => {
-                $("body .main-Page .content .devblog-container .NewsTitle[set]").html(item.title)
-                $("body .main-Page .content .devblog-container .NewsDescription[set]").html(item.description)
+            datajson = item
+        }).then(() => {
+            $(".pageBkg-img img").attr("src", datajson.img);
+            $(".page-title").html(datajson.title)
+            
+            $("body .main-Page .content").load("./htmlNews/"+datajson.htmlFile, () => {
+                $("body .main-Page .content .contentLoading").remove();
+                $("body .main-Page .content .devblog-container .NewsTitle[set]").html(datajson.title)
+                $("body .main-Page .content .devblog-container .NewsDescription[set]").html(datajson.description)
             });
         })
     }
