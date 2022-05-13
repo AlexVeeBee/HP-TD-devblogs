@@ -45,18 +45,18 @@ $(document).ready(() => {
         $(".pageBkg-img").show();
         $(".pageBkg-img").css("opacity", "0.4");
         var id = getUrlParameter("viewNews")
-        var datajson;
+        var itemjson;
         $.getJSON("./news.json", (data) => {
             var item = data[id]
-            datajson = item
+            itemjson = item
         }).then(() => {
-            $(".pageBkg-img img").attr("src", datajson.img);
-            $(".page-title").html(datajson.title)
+            $(".pageBkg-img img").attr("src", itemjson.img);
+            $(".page-title").html(itemjson.title)
             
-            $("body .main-Page .content").load("./htmlNews/"+datajson.htmlFile, () => {
+            $("body .main-Page .content").load("./htmlNews/"+itemjson.htmlFile, () => {
                 $("body .main-Page .content .contentLoading").remove();
-                $("body .main-Page .content .devblog-container .NewsTitle[set]").html(datajson.title)
-                $("body .main-Page .content .devblog-container .NewsDescription[set]").html(datajson.description)
+                $("body .main-Page .content .devblog-container .NewsTitle[set]").html(itemjson.title)
+                $("body .main-Page .content .devblog-container .NewsDescription[set]").html(itemjson.description)
             });
         })
     }
