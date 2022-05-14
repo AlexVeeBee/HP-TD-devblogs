@@ -64,7 +64,8 @@ header .inner .content .Right{
     display: flex;
 }
 header .inner .content{
-    padding: 12px;
+    margin: 0px 12px;   
+    padding: 12px 0px;
     display: flex;
     justify-content: space-between
 }
@@ -157,6 +158,46 @@ header .inner .content *{
     height: 5px;
     background: linear-gradient(90deg,var(--hr-color-ends),var(--hr-color-middle), var(--hr-color-ends));
 }
+/* IMG preview */
+.img-container-preview {
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    top: 0px;
+    opacity: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.img-container-preview
+.exit-preview{
+    position: absolute;
+    top: 0px;
+    /* background-color: rgba(255, 242, 154, 0.42); */
+    width: 100%;
+    height: 100%;
+}
+.img-container-preview[open] {
+    opacity: 1;
+    display: block;
+}
+.img-container-preview .img-container {
+    z-index: 2;
+    pointer-events: none;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img-container-preview .img-container .inner {
+    transition: transform 0.1s;
+    pointer-events: all;
+}
+.img-container-preview .img-container .inner img {
+    pointer-events: none;
+}
 /* devblog */
 .main-Page .content .devblog-container {
 
@@ -203,6 +244,35 @@ header .inner .content *{
 .devblog-contrubitor-container-info a{
     text-decoration: none;
 }
+.main-Page .content .devblog-container
+.devblog-contrubitor-section
+.devblog-contrubitor-container-made {
+    width: 100%;
+}
+.main-Page .content .devblog-container
+.devblog-contrubitor-section
+.devblog-contrubitor-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-Page .content .devblog-container
+.devblog-contrubitor-section
+.devblog-contrubitor-container-made img {
+    max-width: 100%;
+    transition: box-shadow 0.3s;
+}
+.main-Page .content .devblog-container
+.devblog-contrubitor-section
+.devblog-contrubitor-container-made img:hover {
+    box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.6);
+    animation-name: imgHover;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    z-index: 2;
+}
+
 @media (max-width: 768px) {
     .main-Page .content .blog .blog-inner {
         overflow: hidden;
@@ -244,4 +314,16 @@ header .inner .content *{
         background:linear-gradient(to bottom, rgb(232, 218, 125), rgb(255, 239, 132));
         border: 2px solid rgb(255, 242, 154, 0.547);
     }
+}
+@keyframes imgHover {
+    0% {
+        box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.6);
+    }
+    100% {
+        box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.3);
+    }
+
 }
