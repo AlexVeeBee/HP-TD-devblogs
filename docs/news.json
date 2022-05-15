@@ -1,16 +1,10 @@
 [
     {
-        "title": "Test html",
-        "description": "This is the description of the test html",
-        "img": "./htmlNews/content/img/2022-04-30-03-48-52.png",
-        "htmlFile": "test.html",
-        "newsReleased": "dd/mm/yyyy"
-    },
-    {
-        "title": "content html",
-        "description": "4",
-        "img": "https://media.discordapp.net/attachments/768940684199329793/975399409007329330/2022-05-15-09-41-14.png",
+        "title": "First blog for May",
+        "description": "This is where we start the blogs",
+        "thumbnail": "https://media.discordapp.net/attachments/966733347093102722/975476705181450250/2022-05-15-21-14-58.png?width=1532&height=862",
+        "background": "https://media.discordapp.net/attachments/966733347093102722/975476705181450250/2022-05-15-21-14-58.png",
         "htmlFile": "undeconstruction.html",
-        "newsReleased": "00/00/0000"
+        "newsReleased": "15/4/2022"
     }
 ]

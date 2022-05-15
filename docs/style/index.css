@@ -127,10 +127,11 @@ header .inner .content .left
     padding: 8px;
     border-radius: 6px;
     width: fit-content;
-    color: black
+    color: black;
+    font-weight: bold;
 }
 .main-Page .content .blog .blog-inner .newsReleased *{
-    color: black
+    color: black;
 }
 .main-Page .content .blog .blog-inner .title {
     padding: 12px;
@@ -217,7 +218,7 @@ header .inner .content .left
 }
 /* devblog */
 .main-Page .content .devblog-container {
-
+    margin-bottom: 50px;
 }
 .main-Page .content .devblog-container
 .devblog-info {
@@ -275,6 +276,11 @@ header .inner .content .left
 }
 .main-Page .content .devblog-container
 .devblog-contrubitor-section
+.devblog-contrubitor-image-spacing {
+    margin: 12px 0px;
+}
+.main-Page .content .devblog-container
+.devblog-contrubitor-section
 .devblog-contrubitor-image-row {
     display: flex;
     flex-direction: row;
@@ -304,7 +310,7 @@ header .inner .content .left
 }
 .main-Page .content .devblog-container
 .devblog-contrubitor-section
-.devblog-contrubitor-container-made img:hover {
+.devblog-contrubitor-container-made img[styleClickable]:hover {
     box-shadow: 0px 0px 0px 12px rgba(0, 0, 0, 0.3);
     animation-name: imgHover;
     animation-duration: 0.8s;

@@ -2,6 +2,7 @@ var nextBackgroundUrl = "";
 var nextBackgroundWait = false;
 var allowNextBackground = true;
 var inNews = false
+var pageOpen = true
 function goHome() {
     inNews = false;
     if ($(".pageBkg-img .img-bkg").css("opacity") > 0.5) {
@@ -19,11 +20,14 @@ function goHome() {
     $("body .main-Page .content").empty();
     $("body .main-Page .content").append(`<h1 class="contentLoading">Loading News</h1>`);
     $.getJSON("./news.json", (data) => {
-        const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/';
-        // const nextURL = 'http://127.0.0.1:5500/docs/';
+        // const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/';
+        const nextURL = 'http://127.0.0.1:5500/docs/';
         const nextTitle = 'Loading';
         const nextState = { additionalInformation: '' };
-        window.history.pushState(nextState, nextTitle, nextURL);
+        if (!pageOpen) {
+            window.history.pushState(nextState, nextTitle, nextURL);
+        }
+        pageOpen = false
 
         $("body .main-Page .content").empty();
         var ViewIndex = data.length-1
@@ -32,7 +36,7 @@ function goHome() {
             <a tabindex="0" onclick="goToNews(`+ViewIndex+`)" class="blog">
                 <div class="blog-inner">
                     <div class="prev-image">
-                        <img src="`+item.img+`">
+                        <img src="`+item.thumbnail+`">
                     </div>
                     <div class="title">
                         <div class="newsReleased">
@@ -56,20 +60,23 @@ function goToNews(id) {
     $.getJSON("./news.json", (data) => {
         var item = data[id]
         itemjson = item
-        const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/?viewNews='+id;
-        // const nextURL = 'http://127.0.0.1:5500/docs/?viewNews='+id;
+        // const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/?viewNews='+id;
+        const nextURL = 'http://127.0.0.1:5500/docs/?viewNews='+id;
         const nextTitle = 'Loading';
         const nextState = { additionalInformation: '' };
-        window.history.pushState(nextState, nextTitle, nextURL);
+        if (!pageOpen) {
+            window.history.pushState(nextState, nextTitle, nextURL);
+        }
+        pageOpen = false;
     }).then(() => {
         inNews = true;
         setTimeout(() => {
             if (allowNextBackground == true) {
-                $(".pageBkg-img img").attr("src", itemjson.img);
+                $(".pageBkg-img img").attr("src", itemjson.background);
             }
         }, 2000)
         if(nextBackgroundWait == false) {
-            $(".pageBkg-img img").attr("src", itemjson.img);
+            $(".pageBkg-img img").attr("src", itemjson.background);
         }
         nextBackgroundUrl = itemjson.img;
         $(".page-title").html(itemjson.title)
@@ -127,8 +134,10 @@ $(document).ready(() => {
     }
     $(window).on('popstate', function(e){
         if (!getUrlParameter("viewNews")) {
+            pageOpen = true;
             goHome()
         } else {
+            pageOpen = true;
             goToNews(getUrlParameter("viewNews"))
         }
     });

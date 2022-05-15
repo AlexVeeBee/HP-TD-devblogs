@@ -5,8 +5,8 @@ let w;
 let h;
 
 const setCanvasExtents = () => {
-  w = $(document).width() ;
-  h = $(document).height() ;
+  w = $(window).width() ;
+  h = $(window).height() ;
   canvas.width = w;
   canvas.height = h;
 };
