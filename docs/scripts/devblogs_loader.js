@@ -20,8 +20,8 @@ function goHome() {
     $("body .main-Page .content").empty();
     $("body .main-Page .content").append(`<h1 class="contentLoading">Loading News</h1>`);
     $.getJSON("./news.json", (data) => {
-        // const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/';
-        const nextURL = 'http://127.0.0.1:5500/docs/';
+        const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/';
+        // const nextURL = 'http://127.0.0.1:5500/docs/';
         const nextTitle = 'Loading';
         const nextState = { additionalInformation: '' };
         if (!pageOpen) {
@@ -60,8 +60,8 @@ function goToNews(id) {
     $.getJSON("./news.json", (data) => {
         var item = data[id]
         itemjson = item
-        // const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/?viewNews='+id;
-        const nextURL = 'http://127.0.0.1:5500/docs/?viewNews='+id;
+        const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/?viewNews='+id;
+        // const nextURL = 'http://127.0.0.1:5500/docs/?viewNews='+id;
         const nextTitle = 'Loading';
         const nextState = { additionalInformation: '' };
         if (!pageOpen) {
