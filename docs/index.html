@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title class="page-title">HP-TD development</title>
     <script src="./jquery.js"></script>
+    <script src="./jquery-ui.min.js"></script>
     <meta name="og:title" content="HP-TD development" />
     <meta name="og:description" content="Harry Potter: Witchcraft and Wizardry development" />
     <meta name="og:image" content="https://cdn.discordapp.com/icons/964475410618392586/3ad65244ef0240d85f62c2be7473780f.webp?size=4096&width=862&height=862" />
@@ -17,16 +18,16 @@
     <div class="pageBkg">
         <canvas style="height: 100%" id="pageBkg"></canvas>
     </div>
-    <div class="pageBkg pageBkg-img" style="display: none;" >
+    <div class="pageBkg pageBkg-img" style="opacity: 0.3;" >
         <div class="bkg-blur"></div>
         <!-- chrome_AYIZlVgPuK.png -->
-        <img src="" class="unselectable">
+        <img src="" class="unselectable img-bkg" style="opacity: 0;">
     </div>
     <header>
         <div class="inner">
             <div class="content">
                 <div class="left">
-                    <a href="/HP-TD-devblogs/"><span>HP-TD development</span></a>
+                    <a tabindex="0" class="header-home" onclick="goHome()" ><span>HP-TD development</span></a>
                 </div>
                 <div class="Right">
                     <a href="https://discord.gg/ZdX8GuJ2Eg"><button tabindex="-1" class="header-button"><span>Discord</span></button></a>

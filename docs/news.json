@@ -3,18 +3,14 @@
         "title": "Test html",
         "description": "This is the description of the test html",
         "img": "./htmlNews/content/img/2022-04-30-03-48-52.png",
-        "htmlFile": "test.html"
-    },
-    {
-        "title": "bruh html",
-        "description": "4",
-        "img": "https://images-ext-1.discordapp.net/external/rvZQJnkNVNdV6-5k-8RSOrQyhQUrZVupwyIKlp48prg/https/opengraph.githubassets.com/ef24614288501859fbdc3b9cbf07cdd2897370ab211b21a1f256f288f6e754b0/AlexVeeBee/HP-TD-devblogs",
-        "htmlFile": "bruh.html"
+        "htmlFile": "test.html",
+        "newsReleased": "dd/mm/yyyy"
     },
     {
         "title": "content html",
         "description": "4",
-        "img": "https://media.discordapp.net/attachments/966733347093102722/973721250377662464/XvEAvfz.jpg",
-        "htmlFile": "undeconstruction.html"
+        "img": "https://media.discordapp.net/attachments/768940684199329793/975399409007329330/2022-05-15-09-41-14.png",
+        "htmlFile": "undeconstruction.html",
+        "newsReleased": "00/00/0000"
     }
 ]
