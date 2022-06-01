@@ -12,6 +12,7 @@
     <meta name="og:image" content="https://cdn.discordapp.com/icons/964475410618392586/3ad65244ef0240d85f62c2be7473780f.webp?size=4096&width=862&height=862" />
     <meta property="theme-color" content="#FFEDB1">
     <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/LoadingCircle.css">
     <link rel="icon" type="image/x - icon" href="./favicon.png">
 </head>
 <body>
@@ -23,21 +24,6 @@
         <!-- chrome_AYIZlVgPuK.png -->
         <img src="" class="unselectable img-bkg" style="opacity: 0;">
     </div>
-    <header>
-        <div class="inner">
-            <div class="content">
-                <div class="left">
-                    <a tabindex="0" class="header-home" onclick="goHome()" ><span>HP-TD development</span></a>
-                </div>
-                <div class="Right">
-                    <a href="https://discord.gg/ZdX8GuJ2Eg"><button tabindex="-1" class="header-button"><span>Discord</span></button></a>
-                    <a href="https://github.com/deffcolony/HP-Witchcraft-and-Wizardry"><button tabindex="-1" class="header-button"><span>Github</span></button></a>
-                    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2795959492"><button tabindex="-1" class="header-button"><span>Workshop</span></button></a>
-                </div>
-            </div>
-        </div>
-        <div class="header-spacing hr-c"></div>
-    </header>
     <div class="img-container-preview">
         <div class="img-container">
             <div class="inner" style="transform: scale(1);">
@@ -45,10 +31,43 @@
             </div>
         </div>
         <div class="exit-preview"></div>
-    </div>
-    <div class="main-Page">
-        <div class="content">
+        <div class="close-button">
+            <svg style="width:24px;height:24px; display: block;" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+            </svg>
         </div>
+    </div>
+    <div class="main-website">
+        <header>
+            <div class="inner">
+                <div class="content">
+                    <div class="left">
+                        <a tabindex="0" class="header-home" onclick="goHome()" ><span>HP-TD development</span></a>
+                    </div>
+                    <div class="Right">
+                        <a href="https://discord.gg/ZdX8GuJ2Eg"><button tabindex="-1" class="header-button"><span>Discord</span></button></a>
+                        <a href="https://github.com/deffcolony/HP-Witchcraft-and-Wizardry"><button tabindex="-1" class="header-button"><span>Github</span></button></a>
+                        <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2795959492"><button tabindex="-1" class="header-button"><span>Workshop</span></button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="header-spacing hr-c"></div>
+        </header>
+        <div class="main-Page">
+            <div class="content">
+            </div>
+        </div>
+        <footer>
+            <div class="footer-content">
+                <div style="margin-right: 10px ;">
+                    <a tabindex="0" style="cursor: pointer; font-size: 24px;" class="footer-home" onclick="goHome()" ><span>HP-TD development</span></a><br>
+                    <span>2021-2022</span>
+                </div>
+                <!-- <div>
+                    <a href="https://forms.gle/Dsipg15iBrAGm16JA">Join the project</a>
+                </div> -->
+            </div>
+        </footer>
     </div>
 </body>
 <script src="scripts/startfield.js"></script>

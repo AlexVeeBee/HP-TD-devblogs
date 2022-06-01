@@ -1,11 +1,14 @@
 var nextBackgroundUrl = "";
 var nextBackgroundWait = false;
 var allowNextBackground = true;
-var inNews = false
-var pageOpen = true
+var inNews = false;
+var pageOpen = true;
+var users;
 function goHome() {
+    $(".page-title").html("HP-TD development")
+
     inNews = false;
-    if ($(".pageBkg-img .img-bkg").css("opacity") > 0.5) {
+    if ($(".pageBkg-img .img-bkg").css("opacity") > 0.2) {
         allowNextBackground = false
         nextBackgroundWait = true
         $(".pageBkg-img .img-bkg").animate({
@@ -20,8 +23,8 @@ function goHome() {
     $("body .main-Page .content").empty();
     $("body .main-Page .content").append(`<h1 class="contentLoading">Loading News</h1>`);
     $.getJSON("./news.json", (data) => {
-        const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/';
-        // const nextURL = 'http://127.0.0.1:5500/docs/';
+        // const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/';
+        const nextURL = 'http://127.0.0.1:5500/docs/';
         const nextTitle = 'Loading';
         const nextState = { additionalInformation: '' };
         if (!pageOpen) {
@@ -60,8 +63,8 @@ function goToNews(id) {
     $.getJSON("./news.json", (data) => {
         var item = data[id]
         itemjson = item
-        const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/?viewNews='+id;
-        // const nextURL = 'http://127.0.0.1:5500/docs/?viewNews='+id;
+        // const nextURL = 'https://alexveebee.github.io/HP-TD-devblogs/?viewNews='+id;
+        const nextURL = 'http://127.0.0.1:5500/docs/?viewNews='+id;
         const nextTitle = 'Loading';
         const nextState = { additionalInformation: '' };
         if (!pageOpen) {
@@ -83,8 +86,15 @@ function goToNews(id) {
         
         $("body .main-Page .content").load("./htmlNews/"+itemjson.htmlFile, () => {
             $("body .main-Page .content .contentLoading").remove();
-            $("body .main-Page .content .devblog-container .NewsTitle[set]").html(itemjson.title)
-            $("body .main-Page .content .devblog-container .NewsDescription[set]").html(itemjson.description)
+            var devBlogInfoContainer = "body .main-Page .content .devblog-container"
+            $(devBlogInfoContainer+" .NewsTitle[set]").html(itemjson.title)
+            $(devBlogInfoContainer+" .NewsDescription[set]").html(itemjson.description)
+            $(devBlogInfoContainer+" .NewsDate-release[set]").html(itemjson.newsReleased)
+            $("body .main-Page .content .devblog-container *[devblog_section_userid] ").each(( t, e ) => {
+                var elementTarget = this
+                var id = $(e).attr("devblog_section_userid")
+                $(e).html("by "+users[id].name+" "+users[id].rank)
+            })
         });
     })
 }
@@ -103,6 +113,10 @@ $(document).ready(() => {
             opacity: 1
         }, 1000)
     });
+    $.getJSON("./contrubitors.json", (u) => {
+        console.log("loaded users")
+        users = u;
+    })
 
 //    $(".pageBkg-img").append(`<audio controls class="pageBkg-audio"autoplay><source src="./objects/Audio/Background Music.mp3" type="audio/mp3"></audio>`)
    // $(".pageBkg-img .pageBkg-audio").attr("src","./objects/Audio/Background Music.mp3")
@@ -174,6 +188,13 @@ $(document).ready(() => {
         })
     }
     $(".img-container-preview .exit-preview").on("click", ( data ) => {
+        $(".img-container-preview").removeAttr("open")
+        $("body").css("overflow", "auto")
+        $(".img-container-preview .img-container .inner").css({top: 0, left: 0});
+        $(".img-container-preview .img-container .inner").css("transform", "scale(1)");
+        currentImgScale = 1
+    })
+    $(".img-container-preview .close-button").on("click", ( data ) => {
         $(".img-container-preview").removeAttr("open")
         $("body").css("overflow", "auto")
         $(".img-container-preview .img-container .inner").css({top: 0, left: 0});

@@ -6,6 +6,8 @@
     --div-color-ends: transparent;
     --div-color-near-middle: rgb(255, 239, 172,.60);
     --div-color-middle: rgb(255, 239, 172,.80);
+
+    --gold-1: 255, 244, 173;
 }
 .unselectable {
     -webkit-touch-callout: none;
@@ -18,7 +20,7 @@
 
 * {color: white; padding: 0px; margin: 0px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 body {
-    background-color: gray;
+    background-color: rgb(0, 0, 0);
 }
 .pageBkg {
     z-index: -1;
@@ -38,6 +40,15 @@ body {
     width: 100%;
     height: 100%;
 }
+.main-website {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+/* span {
+    display: block;
+} */
 header {
     box-shadow: 0px 3px 12px 1px rgba(0,0,0,0.3);
     display: flex;
@@ -49,8 +60,8 @@ header {
     /* background-color: red; */
     color: white;
 
-    background: linear-gradient(to bottom, rgb(194, 183, 111), rgba(255, 242, 154, 0)),
-     linear-gradient(to right, rgb(194, 183, 111), rgba(255, 242, 154, 0.42), rgb(194, 183, 111) );
+    background: linear-gradient(to bottom, rgb(var(--gold-1)), rgba(255, 242, 154, 0)),
+                linear-gradient(to right, rgb(var(--gold-1)), rgba(var(--gold-1), 0.42), rgb(220, 207, 128) );
 }
 header .inner{ 
     width: 100vw;
@@ -103,6 +114,24 @@ header .inner .content .left
     margin-top: 12px;
     width: 100%;
     max-width: var(--page-width);
+}
+footer {
+    /* position: absolute; */
+    top: auto;
+    display: flex;
+    width: 100%;
+    padding: 30px 0px;
+    background:linear-gradient(to right, rgb(194, 179, 111), rgba(255, 242, 154, 0.42), rgb(194, 179, 111) );
+     align-items: center;
+     flex-direction: column; 
+}
+footer .footer-content {
+    width: 100vw;
+    max-width: var(--page-width);
+    display: flex;
+}
+footer *{
+    color: black;
 }
 /* The rest of the blogs */
 .main-Page .content .blog { text-decoration: none !important; }
@@ -209,12 +238,29 @@ header .inner .content .left
     align-items: center;
     justify-content: center;
 }
+.img-container-preview .close-button {
+    z-index: 2;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    padding: 8px;
+    background-color:rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+}
 .img-container-preview .img-container .inner {
     transition: transform 0.1s;
     pointer-events: all;
+    /* background-color: red; */
+    /* max-width: 100vw;
+    max-height: 100vh; */
 }
 .img-container-preview .img-container .inner img {
+    /* object-fit: cover; */
+    display: block;
     pointer-events: none;
+    max-width: 100vw;
+    max-height: 100vh;
 }
 /* devblog */
 .main-Page .content .devblog-container {
@@ -227,30 +273,65 @@ header .inner .content .left
     flex-direction: column;
     align-items: center;
 }
+/* title */
 .main-Page .content .devblog-container
 .devblog-title {
-    padding: 12px;
+    padding: 12px 0px;
     width: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 242, 154, 0.42),transparent);
+    background: linear-gradient(to right, transparent, rgba(255, 246, 186, 0.42),transparent);
 }
+/* description */
 .main-Page .content .devblog-container
 .devblog-description {
     margin-top: 12px;
     padding: 12px;
     border-radius: 3px;
     width: fit-content;
-    background-color: rgba(255, 242, 154, 0.42);
-    border: 2px solid rgba(255, 242, 154, 0.552);
+    background-color: #ffedb155;
+    border: 2px solid #ffedb1b4;
 }
+/* DATE */
+.main-Page .content .devblog-container
+.devblog-daterelease {
+    background-color: #ffedb1b4;
+    padding: 8px;
+    border-radius: 3px;
+    width: fit-content;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    margin-left: 12px;
+}    
+.main-Page .content .devblog-container
+.devblog-daterelease .NewsDate-release{
+    color: black;
+}    
+/*  */
 .main-Page .content .devblog-container
 .devblog-contrubitor-section {
+    position: relative;
     margin-top: 64px;
+}
+.main-Page .content .devblog-container
+.devblog-new-section-contrubitor-section::before {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    margin-top: -32px;
+    padding: 0px;
+    padding-top: 4px;
+    padding-bottom: 64px;
+    content: "Ahoy, there is a new section added over here";
+    position: absolute;
+    border-top: 2px solid rgb(213, 64, 64);
+    border-bottom: 2px solid rgb(213, 64, 64);
 }
 .main-Page .content .devblog-container
 .devblog-contrubitor-section
 .devblog-contrubitor-container-info {
     margin-bottom: 4px;
-    background: linear-gradient(to right, transparent 0%, rgba(255, 242, 154, 0.42) 10%, transparent 100%);
+    background: linear-gradient(to right, transparent 0%, rgba(255, 246, 186, 0.42) 10%, transparent 100%);
     padding: 8px 2px;
 
     /* box-shadow: 0px 0px 4px 2px rgba(119, 112, 65, 0.8);
@@ -285,7 +366,6 @@ header .inner .content .left
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    overflow: hidden;
     box-sizing: initial;
 }
 .main-Page .content .devblog-container
@@ -413,7 +493,7 @@ header .inner .content .left
         border: none;
         border-radius: 4px;
         background:linear-gradient(to bottom, rgb(237, 221, 133), rgb(202, 188, 108));
-        border: 2px solid rgb(255, 242, 154, 0.547);
+        border: 2px solid rgb(var(--gold-1), 0.547);
     }
 }
 @keyframes imgHover {
