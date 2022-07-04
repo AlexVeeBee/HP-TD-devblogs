@@ -6,5 +6,13 @@
         "background": "https://media.discordapp.net/attachments/966733347093102722/975476705181450250/2022-05-15-21-14-58.png",
         "htmlFile": "undeconstruction.html",
         "newsReleased": "15/5/2022"
+    },
+    {
+        "title": "June 2022",
+        "description": "We need help",
+        "thumbnail": "https://media.discordapp.net/attachments/966733347093102722/984045096574001212/2022-06-08-12-41-38.png?width=1532&height=862",
+        "background": "https://media.discordapp.net/attachments/966733347093102722/984045096574001212/2022-06-08-12-41-38.png",
+        "htmlFile": "june2022.html",
+        "newsReleased": "4/7/2022"
     }
 ]
